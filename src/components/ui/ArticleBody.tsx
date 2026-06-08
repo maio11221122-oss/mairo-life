@@ -16,7 +16,7 @@ type Props = {
 };
 
 export default function ArticleBody({ article, isDraft = false }: Props) {
-  const publishedDate = new Date(article.publishedAt).toLocaleDateString("ja-JP", {
+  const publishedDate = new Date(article.publishedAt ?? Date.now()).toLocaleDateString("ja-JP", {
     year: "numeric",
     month: "long",
     day: "numeric",
