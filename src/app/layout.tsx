@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   description:
     "愛犬マイロとの暮らし、おでかけ、旅行、カフェ、フリーランスの日常を発信するライフスタイルメディア",
   verification: {
-    google: "B-6X9ZDP7ENtRvvTKXF5F4-zZvsVHlnAQd187eGWNMc",
+    google: ["B-6X9ZDP7ENtRvvTKXF5F4-zZvsVHlnAQd187eGWNMc", "wYDS5znx0tMGYT7K7_T04ljHZyLqjPW9gVzkcVM3hzY"],
   },
   openGraph: {
     type: "website",
