@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #FDFBF7;
+  --color-surface: #F5F0E8;
+  --color-primary: #C9A89A;
+  --color-primary-dark: #A87D72;
+  --color-text: #3D3530;
+  --color-text-sub: #7A6B64;
+  --color-border: #E8DDD4;
+  --color-white: #FFFFFF;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: "Noto Sans JP", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block px-8 py-3 text-sm tracking-widest text-white bg-primary hover:bg-primary-dark transition-colors duration-300;
+  }
+
+  .btn-outline {
+    @apply inline-block px-8 py-3 text-sm tracking-widest border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 px-6 md:px-12 lg:px-24;
+  }
+
+  .article-card {
+    @apply bg-white overflow-hidden transition-shadow duration-300 hover:shadow-md;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .article-card img {
+    @apply transition-transform duration-500;
+  }
+
+  .article-card:hover img {
+    @apply scale-[1.03];
+  }
+
+  /* 記事本文（microCMSリッチエディタHTML）スタイル */
+  .article-content {
+    @apply text-sm leading-[2.2] text-text-sub font-sans;
+  }
+
+  .article-content h2 {
+    @apply font-serif text-xl md:text-2xl text-text-main mt-12 mb-4 pb-2 border-b border-border;
+  }
+
+  .article-content h3 {
+    @apply font-serif text-lg text-text-main mt-8 mb-3;
+  }
+
+  .article-content p {
+    @apply mt-4;
+  }
+
+  .article-content a {
+    @apply text-primary underline underline-offset-2 hover:text-primary-dark transition-colors;
+  }
+
+  .article-content img {
+    @apply w-full my-8 object-cover;
+  }
+
+  .article-content ul {
+    @apply mt-4 ml-5 space-y-1 list-disc;
+  }
+
+  .article-content ol {
+    @apply mt-4 ml-5 space-y-1 list-decimal;
+  }
+
+  .article-content blockquote {
+    @apply border-l-2 border-primary pl-4 my-6 text-text-sub italic;
+  }
+
+  .article-content strong {
+    @apply text-text-main font-medium;
+  }
+}
