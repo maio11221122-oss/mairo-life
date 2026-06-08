@@ -35,7 +35,7 @@ export default async function AboutPage() {
           sizes="100vw"
           className="object-cover object-top"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-black/30" />
+        <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <h1 className="font-serif text-5xl md:text-6xl tracking-[0.2em] text-white drop-shadow-sm">
             ABOUT
