@@ -28,7 +28,7 @@ export default async function AboutPage() {
       {/* ヒーロー */}
       <section className="relative h-56 md:h-72 overflow-hidden">
         <Image
-          src={about?.ownerImage?.url ?? DEFAULT_IMAGE}
+          src={about?.bannerImage?.url ?? about?.ownerImage?.url ?? DEFAULT_IMAGE}
           alt="ABOUT"
           fill
           priority

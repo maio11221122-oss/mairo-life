@@ -37,6 +37,7 @@ export type SiteSettings = {
   travelImage?: MicroCMSImage;    // TOPICSカード画像（TRAVEL）
   cafeImage?: MicroCMSImage;      // TOPICSカード画像（CAFE）
   lifeImage?: MicroCMSImage;      // TOPICSカード画像（LIFE）
+  lifeBanner?: MicroCMSImage;     // LIFEページバナー画像（1920×600px推奨）
 };
 
 // ── Aboutページ設定 ───────────────────────────
@@ -54,6 +55,7 @@ export type AboutSettings = {
   siteDescription: string;        // このサイトについて（ABOUTページ下部）
   snippetTitle?: string;          // TOPページのキャッチコピー（例：マイロと歩く、小さくて大切な毎日。）
   snippetBody?: string;           // TOPページのAboutスニペット本文（Aboutページとは別に管理）
+  bannerImage?: MicroCMSImage;    // ABOUTページバナー画像（1920×600px推奨）
 };
 
 // ── Contactページ設定 ─────────────────────────
