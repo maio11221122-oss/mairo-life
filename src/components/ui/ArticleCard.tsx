@@ -30,7 +30,7 @@ export default function ArticleCard({ article }: Props) {
             {article.category[0]}
           </span>
           <time className="text-[11px] text-text-sub tracking-wider">
-            {new Date(article.publishedAt).toLocaleDateString("ja-JP", {
+            {new Date(article.publishedAt ?? Date.now()).toLocaleDateString("ja-JP", {
               year: "numeric",
               month: "2-digit",
               day: "2-digit",
