@@ -33,11 +33,10 @@ export default function AboutSnippet({ about }: Props) {
                 <>マイロと歩く、<br />小さくて大切な毎日。</>
               )}
             </h2>
-            {about?.ownerBio ? (
-              <div
-                className="mt-6 text-sm leading-[2] text-text-sub font-sans line-clamp-4"
-                dangerouslySetInnerHTML={{ __html: about.ownerBio }}
-              />
+            {about?.snippetBody ? (
+              <p className="mt-6 text-sm leading-[2] text-text-sub font-sans">
+                {about.snippetBody}
+              </p>
             ) : (
               <p className="mt-6 text-sm leading-[2] text-text-sub font-sans">
                 こんにちは。マイロというゴールデンレトリバーと暮らしているフリーランスのまなです。

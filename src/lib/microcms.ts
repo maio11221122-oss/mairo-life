@@ -53,6 +53,7 @@ export type AboutSettings = {
   mairoDislikes: string;          // 苦手なこと
   siteDescription: string;        // このサイトについて（ABOUTページ下部）
   snippetTitle?: string;          // TOPページのキャッチコピー（例：マイロと歩く、小さくて大切な毎日。）
+  snippetBody?: string;           // TOPページのAboutスニペット本文（Aboutページとは別に管理）
 };
 
 // ── Contactページ設定 ─────────────────────────
