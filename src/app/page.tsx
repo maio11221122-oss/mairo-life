@@ -19,7 +19,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection settings={siteSettings ?? undefined} />
-      <TopicsSection />
+      <TopicsSection settings={siteSettings} />
       <AboutSnippet about={aboutSettings} />
       <CategorySection category="travel" articles={travelRes.contents} />
       <CategorySection category="cafe" articles={cafeRes.contents} bg />

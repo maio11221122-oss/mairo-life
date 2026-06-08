@@ -34,6 +34,9 @@ export type SiteSettings = {
   instagramUrl: string;           // InstagramのURL
   twitterUrl: string;             // X（Twitter）のURL
   beholdFeedId?: string;          // Behold.so フィードID（Instagramウィジェット）
+  travelImage?: MicroCMSImage;    // TOPICSカード画像（TRAVEL）
+  cafeImage?: MicroCMSImage;      // TOPICSカード画像（CAFE）
+  lifeImage?: MicroCMSImage;      // TOPICSカード画像（LIFE）
 };
 
 // ── Aboutページ設定 ───────────────────────────

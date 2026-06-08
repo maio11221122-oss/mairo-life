@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/ui/SectionTitle";
+import type { SiteSettings } from "@/lib/microcms";
 
-const topics = [
+const FALLBACK_TOPICS = [
   {
     href: "/travel",
     label: "TRAVEL",
@@ -26,7 +27,35 @@ const topics = [
   },
 ];
 
-export default function TopicsSection() {
+type Props = {
+  settings?: SiteSettings | null;
+};
+
+export default function TopicsSection({ settings }: Props) {
+  const topics = [
+    {
+      href: "/travel",
+      label: "TRAVEL",
+      ja: "旅行・おでかけ",
+      description: "マイロと一緒に旅する、犬連れ旅行の記録",
+      image: settings?.travelImage?.url ?? FALLBACK_TOPICS[0].image,
+    },
+    {
+      href: "/cafe",
+      label: "CAFE",
+      ja: "カフェ",
+      description: "犬OKのカフェを探して、テラスでのんびり",
+      image: settings?.cafeImage?.url ?? FALLBACK_TOPICS[1].image,
+    },
+    {
+      href: "/life",
+      label: "LIFE",
+      ja: "日常・くらし",
+      description: "フリーランスの日常と、マイロとの毎日",
+      image: settings?.lifeImage?.url ?? FALLBACK_TOPICS[2].image,
+    },
+  ];
+
   return (
     <section className="section-padding max-w-7xl mx-auto">
       <SectionTitle en="TOPICS" ja="カテゴリ" center />
