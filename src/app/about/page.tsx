@@ -33,7 +33,7 @@ export default async function AboutPage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-top"
+          className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0 flex flex-col items-center justify-center">
