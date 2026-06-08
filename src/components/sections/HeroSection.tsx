@@ -5,16 +5,18 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import type { SiteSettings } from "@/lib/microcms";
 
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&q=80";
+
 type Props = {
-  settings: SiteSettings;
+  settings?: SiteSettings | null;
 };
 
 export default function HeroSection({ settings }: Props) {
   return (
     <section className="relative h-screen min-h-[600px] overflow-hidden">
       <Image
-        src={settings.heroImage.url}
-        alt={settings.heroImage.alt ?? "MAIRO LIFE hero"}
+        src={settings?.heroImage?.url ?? FALLBACK_IMAGE}
+        alt={settings?.heroImage?.alt ?? "MAIRO LIFE hero"}
         fill
         priority
         sizes="100vw"
@@ -24,13 +26,13 @@ export default function HeroSection({ settings }: Props) {
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
         <p className="text-xs md:text-sm tracking-[0.35em] text-white/90 font-sans mb-4">
-          {settings.catchCopy}
+          {settings?.catchCopy ?? "愛犬と歩く、毎日のこと"}
         </p>
         <h1 className="font-serif italic text-5xl md:text-7xl lg:text-8xl tracking-[0.15em] text-white drop-shadow-sm">
           MAIRO LIFE
         </h1>
         <p className="mt-4 text-xs md:text-sm tracking-[0.3em] text-white/80 font-sans">
-          {settings.subCopy}
+          {settings?.subCopy ?? "旅 ・ カフェ ・ くらし"}
         </p>
         <Link
           href="/travel"
