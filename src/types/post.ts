@@ -1,4 +1,12 @@
 export type Category = "travel" | "cafe" | "life";
 
-// microCMSから取得した記事の型（src/lib/microcms.ts の Article 型を参照）
-// このファイルはカテゴリの型定義を共有するために使用
+// 静的ダミーデータ用の型（posts.ts で使用）
+export type Post = {
+  slug: string;
+  title: string;
+  category: Category;
+  date: string;
+  thumbnail: string;
+  excerpt: string;
+  tags: string[];
+};
