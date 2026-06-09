@@ -38,10 +38,14 @@ export async function GET(request: NextRequest) {
   const { getArticleById } = await import("@/lib/microcms");
   try {
     const article = await getArticleById(id, { draftKey: draftKey ?? undefined });
-    const cat = article.category[0];
+    const cat = article.category?.[0];
+    if (!cat) {
+      // カテゴリ未設定の場合はtravelにフォールバック
+      redirect(`/travel/${id}?draftKey=${draftKey}`);
+    }
     redirect(`/${cat}/${id}?draftKey=${draftKey}`);
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    return new Response(`Article not found: ${id} / ${message}`, { status: 404 });
+    return new Response(`Article not found: id=${id} / ${message}`, { status: 404 });
   }
 }
