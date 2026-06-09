@@ -40,7 +40,8 @@ export async function GET(request: NextRequest) {
     const article = await getArticleById(id, { draftKey: draftKey ?? undefined });
     const cat = article.category[0];
     redirect(`/${cat}/${id}?draftKey=${draftKey}`);
-  } catch {
-    return new Response("Article not found", { status: 404 });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    return new Response(`Article not found: ${id} / ${message}`, { status: 404 });
   }
 }
