@@ -6,7 +6,10 @@ import { getArticleById, getAllArticleIds } from "@/lib/microcms";
 
 export const revalidate = 60;
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ draftKey?: string }>;
+};
 
 export async function generateStaticParams() {
   const ids = await getAllArticleIds("travel");
@@ -31,13 +34,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function TravelArticlePage({ params }: Props) {
+export default async function TravelArticlePage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const { draftKey } = await searchParams;
   const { isEnabled: isDraft } = await draftMode();
 
   try {
     const article = await getArticleById(slug, {
-      draftKey: isDraft ? process.env.MICROCMS_PREVIEW_SECRET : undefined,
+      draftKey: isDraft && draftKey ? draftKey : undefined,
     });
     if (!article.category.includes("travel")) notFound();
     return <ArticleBody article={article} isDraft={isDraft} />;
