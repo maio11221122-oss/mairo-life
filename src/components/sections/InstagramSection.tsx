@@ -43,29 +43,10 @@ export default function InstagramSection({
             <BeholdWidget feedId={beholdFeedId} />
           </div>
         ) : (
-          /* 未設定 → プレースホルダー画像 */
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-1.5">
-            {placeholderImages.map((src, i) => (
-              <a
-                key={i}
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative aspect-square overflow-hidden group"
-              >
-                <Image
-                  src={src}
-                  alt={`Instagram post ${i + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 33vw, 16vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <Instagram size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </a>
-            ))}
-          </div>
+          /* 未設定 → Instagramへの誘導テキストのみ */
+          <p className="text-center text-sm text-text-sub font-sans tracking-wider py-8">
+            Instagramで日々の暮らしを発信しています。
+          </p>
         )}
 
         {/* フォローボタン */}
