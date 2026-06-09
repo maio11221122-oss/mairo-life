@@ -39,21 +39,21 @@ export async function GET(request: NextRequest) {
 
   // カテゴリ未指定の場合はmicroCMSから記事を取得してカテゴリを判定
   const { getArticleById } = await import("@/lib/microcms");
+
+  // 記事取得（draftKeyありで試みる、失敗したらなしで再試行）
+  let article;
   try {
-    // まずdraftKeyありで試みる、失敗したらなしで再試行
-    let article;
+    article = await getArticleById(id, { draftKey: draftKey ?? undefined });
+  } catch {
     try {
-      article = await getArticleById(id, { draftKey: draftKey ?? undefined });
-    } catch {
       article = await getArticleById(id);
+    } catch (err2) {
+      const message = err2 instanceof Error ? err2.message : String(err2);
+      return new Response(`記事が見つかりません: id=${id} / ${message}`, { status: 404 });
     }
-    const cat = article.category?.[0];
-    if (!cat) {
-      redirect(`/travel/${id}${draftKey ? `?draftKey=${draftKey}` : ""}`);
-    }
-    redirect(`/${cat}/${id}${draftKey ? `?draftKey=${draftKey}` : ""}`);
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    return new Response(`記事が見つかりません: id=${id} / ${message}`, { status: 404 });
   }
+
+  const cat = article!.category?.[0];
+  const suffix = draftKey ? `?draftKey=${draftKey}` : "";
+  redirect(cat ? `/${cat}/${id}${suffix}` : `/travel/${id}${suffix}`);
 }
