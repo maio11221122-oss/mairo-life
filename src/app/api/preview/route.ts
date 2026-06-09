@@ -2,6 +2,9 @@ import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 import type { NextRequest } from "next/server";
 
+// キャッシュを無効化（プレビューAPIは常に動的に実行）
+export const dynamic = "force-dynamic";
+
 /**
  * 下書きプレビュー用APIルート
  * microCMS の「プレビュー」ボタンを押したときにここが呼ばれる
