@@ -11,22 +11,36 @@ import type { NextRequest } from "next/server";
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const secret = searchParams.get("secret");
-  const id = searchParams.get("id");
+  // microCMSは {CONTENT_ID} を contentId または id として渡す
+  const id = searchParams.get("id") ?? searchParams.get("contentId");
   const category = searchParams.get("category");
+  const draftKey = searchParams.get("draftKey");
 
   // シークレットチェック
   if (secret !== process.env.MICROCMS_PREVIEW_SECRET) {
     return new Response("Invalid secret", { status: 401 });
   }
 
-  if (!id || !category) {
-    return new Response("Missing id or category", { status: 400 });
+  if (!id) {
+    return new Response("Missing id", { status: 400 });
   }
 
   // Draft Modeを有効化
   const draft = await draftMode();
   draft.enable();
 
-  // 記事詳細ページにリダイレクト
-  redirect(`/${category}/${id}`);
+  // カテゴリが不明な場合はAPIで取得して判定
+  if (category) {
+    redirect(`/${category}/${id}?draftKey=${draftKey}`);
+  }
+
+  // カテゴリ未指定の場合はmicroCMSから記事を取得してカテゴリを判定
+  const { getArticleById } = await import("@/lib/microcms");
+  try {
+    const article = await getArticleById(id, { draftKey: draftKey ?? undefined });
+    const cat = article.category[0];
+    redirect(`/${cat}/${id}?draftKey=${draftKey}`);
+  } catch {
+    return new Response("Article not found", { status: 404 });
+  }
 }
