@@ -23,7 +23,7 @@ export default async function LifePage() {
       <PageHero
         title="LIFE"
         subtitle="日常・くらし"
-        image={siteSettings?.lifeBanner?.url ?? FALLBACK_IMAGE}
+        image={siteSettings?.lifeImage?.url ?? FALLBACK_IMAGE}
       />
       <section className="max-w-7xl mx-auto section-padding">
         {contents.length > 0 ? (

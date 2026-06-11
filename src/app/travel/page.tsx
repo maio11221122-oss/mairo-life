@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import ArticleCard from "@/components/ui/ArticleCard";
-import { getArticlesByCategory } from "@/lib/microcms";
+import { getArticlesByCategory, getSiteSettings } from "@/lib/microcms";
 
 export const revalidate = 60;
 
@@ -10,15 +10,20 @@ export const metadata: Metadata = {
   description: "マイロと一緒に旅する、犬連れ旅行の記録",
 };
 
+const FALLBACK = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80";
+
 export default async function TravelPage() {
-  const { contents } = await getArticlesByCategory("travel", { limit: 100 });
+  const [{ contents }, siteSettings] = await Promise.all([
+    getArticlesByCategory("travel", { limit: 100 }),
+    getSiteSettings().catch(() => null),
+  ]);
 
   return (
     <>
       <PageHero
         title="TRAVEL"
         subtitle="旅行・おでかけ"
-        image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80"
+        image={siteSettings?.travelImage?.url ?? FALLBACK}
       />
       <section className="max-w-7xl mx-auto section-padding">
         {contents.length > 0 ? (
