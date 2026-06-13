@@ -59,25 +59,30 @@ export default function TopicsSection({ settings }: Props) {
   return (
     <section className="section-padding max-w-7xl mx-auto">
       <SectionTitle en="TOPICS" ja="カテゴリ" center />
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* SP: 2×2グリッド / PC: 3列横並び */}
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
         {topics.map((t) => (
           <Link
             key={t.href}
             href={t.href}
-            className="group block relative overflow-hidden aspect-square"
+            className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 p-5 flex flex-col items-center text-center gap-3"
           >
-            <Image
-              src={t.image}
-              alt={t.label}
-              fill
-              sizes="(max-width: 768px) 100vw, 33vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <h3 className="font-serif text-2xl tracking-[0.2em]">{t.label}</h3>
-              <p className="text-xs tracking-widest text-white/80 mt-1 font-sans">{t.ja}</p>
-              <p className="text-xs text-white/70 mt-2 font-sans leading-relaxed">
+            {/* 丸い画像 */}
+            <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-border">
+              <Image
+                src={t.image}
+                alt={t.label}
+                fill
+                sizes="(max-width: 768px) 80px, 112px"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.08]"
+              />
+            </div>
+            {/* テキスト */}
+            <div>
+              <h3 className="font-serif text-base md:text-lg tracking-[0.15em] text-text-main">
+                {t.label}
+              </h3>
+              <p className="text-xs text-text-sub font-sans mt-1 leading-relaxed">
                 {t.description}
               </p>
             </div>
