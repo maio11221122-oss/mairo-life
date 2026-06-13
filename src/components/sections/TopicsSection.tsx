@@ -59,26 +59,28 @@ export default function TopicsSection({ settings }: Props) {
   return (
     <section className="section-padding max-w-7xl mx-auto">
       <SectionTitle en="TOPICS" ja="カテゴリ" center />
-      {/* SP: 2×2グリッド / PC: 3列横並び */}
+      {/* SP: 2×2グリッド（3枚目は中央） / PC: 3列横並び */}
       <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-        {topics.map((t) => (
+        {topics.map((t, i) => (
           <Link
             key={t.href}
             href={t.href}
-            className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 p-5 flex flex-col items-center text-center gap-3"
+            className={`group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col${
+              i === 2 ? " col-span-2 md:col-span-1" : ""
+            }`}
           >
-            {/* 丸い画像 */}
-            <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-border">
+            {/* 画像：枠いっぱい */}
+            <div className={`relative w-full overflow-hidden${i === 2 ? " aspect-[2/1] md:aspect-square" : " aspect-square"}`}>
               <Image
                 src={t.image}
                 alt={t.label}
                 fill
-                sizes="(max-width: 768px) 80px, 112px"
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.08]"
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
               />
             </div>
             {/* テキスト */}
-            <div>
+            <div className="p-4 text-center">
               <h3 className="font-serif text-base md:text-lg tracking-[0.15em] text-text-main">
                 {t.label}
               </h3>
