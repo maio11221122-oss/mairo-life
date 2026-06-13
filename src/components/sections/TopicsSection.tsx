@@ -66,11 +66,11 @@ export default function TopicsSection({ settings }: Props) {
             key={t.href}
             href={t.href}
             className={`group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col${
-              i === 2 ? " col-span-2 md:col-span-1" : ""
+              i === 2 ? " col-start-1 col-end-2 mx-auto w-full md:col-span-1" : ""
             }`}
           >
             {/* 画像：枠いっぱい */}
-            <div className={`relative w-full overflow-hidden${i === 2 ? " aspect-[2/1] md:aspect-square" : " aspect-square"}`}>
+            <div className="relative w-full aspect-square overflow-hidden">
               <Image
                 src={t.image}
                 alt={t.label}

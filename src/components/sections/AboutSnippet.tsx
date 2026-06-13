@@ -35,11 +35,11 @@ export default function AboutSnippet({ about }: Props) {
               )}
             </h2>
             {about?.snippetBody ? (
-              <p className="mt-3 md:mt-6 text-xs md:text-sm leading-relaxed md:leading-[2] text-text-sub font-sans hidden md:block">
+              <p className="mt-3 md:mt-6 text-xs md:text-sm leading-relaxed md:leading-[2] text-text-sub font-sans line-clamp-4 md:line-clamp-none">
                 {about.snippetBody}
               </p>
             ) : (
-              <p className="mt-3 md:mt-6 text-xs md:text-sm leading-relaxed md:leading-[2] text-text-sub font-sans hidden md:block">
+              <p className="mt-3 md:mt-6 text-xs md:text-sm leading-relaxed md:leading-[2] text-text-sub font-sans line-clamp-4 md:line-clamp-none">
                 こんにちは。マイロというゴールデンレトリバーと暮らしているフリーランスのまなです。
                 犬と旅することが大好きで、行く先々のカフェや宿を記録しています。
               </p>
