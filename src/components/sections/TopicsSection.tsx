@@ -22,7 +22,7 @@ const FALLBACK_TOPICS = [
     href: "/life",
     label: "LIFE",
     ja: "日常・くらし",
-    description: "フリーランスの日常と、マイロとの毎日",
+    description: "日常のこと、マイロとの毎日",
     image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800&q=80",
   },
 ];
@@ -51,7 +51,7 @@ export default function TopicsSection({ settings }: Props) {
       href: "/life",
       label: "LIFE",
       ja: "日常・くらし",
-      description: "フリーランスの日常と、マイロとの毎日",
+      description: "日常のこと、マイロとの毎日",
       image: settings?.lifeImage?.url ?? FALLBACK_TOPICS[2].image,
     },
   ];
