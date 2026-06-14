@@ -1,11 +1,13 @@
-import { draftMode } from "next/headers";
+﻿import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
+import type { NextRequest } from "next/server";
 
-/**
- * プレビューを終了するAPIルート
- */
-export async function GET() {
+export const dynamic = "force-dynamic";
+
+export async function GET(request: NextRequest) {
   const draft = await draftMode();
   draft.disable();
-  redirect("/");
+
+  const redirectTo = request.nextUrl.searchParams.get("redirect") ?? "/";
+  redirect(redirectTo);
 }
