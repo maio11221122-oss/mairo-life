@@ -80,7 +80,7 @@ export default function ArticleBody({ article, isDraft = false }: Props) {
       {/* 本文（リッチエディタHTML） */}
       <div
         className="mt-8 border-t border-border pt-8 article-content"
-        dangerouslySetInnerHTML={{ __html: article.content }}
+        dangerouslySetInnerHTML={{ __html: article.content ?? "" }}
       />
     </article>
   );
