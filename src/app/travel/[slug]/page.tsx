@@ -39,13 +39,14 @@ export default async function TravelArticlePage({ params, searchParams }: Props)
   const { draftKey } = await searchParams;
   const { isEnabled: isDraft } = await draftMode();
 
+  let article;
   try {
-    const article = await getArticleById(slug, {
+    article = await getArticleById(slug, {
       draftKey: isDraft && draftKey ? draftKey : undefined,
     });
-    if (!article.category.includes("travel")) notFound();
-    return <ArticleBody article={article} isDraft={isDraft} />;
   } catch {
     notFound();
   }
+  if (!article?.category?.includes("travel")) notFound();
+  return <ArticleBody article={article!} isDraft={isDraft} />;
 }
